@@ -1,0 +1,27 @@
+#plugin information
+id: ForceTemplateContext
+name: ForceTemplateContext
+version: 0.0.1
+
+#about this plugin
+description: <__trans phrase="Force template to use blog\'s context">
+author_name: <__trans phrase="toi-planning">
+author_link: http://tec.toi-planning.net/
+plugin_link: http://tec.toi-planning.net/mt/forcetemplatecontext/
+doc_link: http://tec.toi-planning.net/mt/forcetemplatecontext/manual
+
+#Localization
+l10n_class: ForceTemplateContext::L10N
+
+# object types
+schema_version: 0.1
+object_types:
+    template:
+        force_blog_context:
+            type: boolean
+            not_null: 0
+
+callbacks:
+    MT::Template::pre_save: $ForceTemplateContext::ForceTemplateContext::template_pre_save
+    MT::App::CMS::template_param.edit_template: $ForceTemplateContext::ForceTemplateContext::param_edit_template
+    MT::Template::post_load: $ForceTemplateContext::ForceTemplateContext::post_load_template
